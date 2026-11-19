@@ -114,6 +114,22 @@ describe('operaciones del carrito', () => {
 });
 
 describe('precios reales del catálogo (formato COP con puntos de miles)', () => {
+    test.each([
+        ['$23.999.000', 23999000],
+        ['$639.000', 639000],
+        ['$639000', 639000],
+        [100000, 100000],
+        ['', 0],
+        [undefined, 0]
+    ])('parsePrice(%p) = %p', (entrada, esperado) => {
+        expect(cart.parsePrice(entrada)).toBe(esperado);
+    });
+
+    test('calculateSummary redondea el IVA y aplica el envío gratis desde $200.000', () => {
+        expect(cart.calculateSummary(199999)).toEqual({ subtotal: 199999, tax: 38000, shipping: 15000, total: 252999 });
+        expect(cart.calculateSummary(200000)).toEqual({ subtotal: 200000, tax: 38000, shipping: 0, total: 238000 });
+    });
+
     test('getCartTotal interpreta "$23.999.000" como 23.999.000 pesos', () => {
         cart.addToCart(reloj({ price: '$23.999.000' }));
         expect(cart.getCartTotal()).toBe(23999000);

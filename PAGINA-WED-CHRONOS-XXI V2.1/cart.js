@@ -69,12 +69,25 @@ function clearCart() {
     updateCartBadge();
 }
 
+// Los precios del catálogo vienen en formato COP ("$23.999.000"): el punto es separador
+// de miles y no hay decimales, así que se conservan solo los dígitos.
+function parsePrice(price) {
+    return Number(String(price).replace(/\D/g, '')) || 0;
+}
+
+const IVA_RATE = 0.19;
+const FREE_SHIPPING_THRESHOLD = 200000;
+const SHIPPING_COST = 15000;
+
+function calculateSummary(subtotal) {
+    const tax = Math.round(subtotal * IVA_RATE);
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+    return { subtotal, tax, shipping, total: subtotal + tax + shipping };
+}
+
 function getCartTotal() {
     const cart = getCart();
-    return cart.reduce((total, item) => {
-        const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-        return total + (price * item.quantity);
-    }, 0);
+    return cart.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
 }
 
 function getCartCount() {
@@ -142,7 +155,7 @@ function renderCart() {
             </div>
             <div class="cart-item-price">
                 <p class="price">${item.price}</p>
-                <p class="subtotal">Subtotal: ${formatPrice(parseFloat(item.price.replace(/[^0-9.-]+/g, '')) * item.quantity)}</p>
+                <p class="subtotal">Subtotal: ${formatPrice(parsePrice(item.price) * item.quantity)}</p>
             </div>
             <button class="cart-item-remove" onclick="removeItem('${item.id}')">
                 <i class="fas fa-trash-alt"></i>
@@ -158,11 +171,8 @@ function renderCart() {
 // ==========================================
 
 function updateCartSummary() {
-    const subtotal = getCartTotal();
-    const tax = subtotal * 0.19; // IVA 19%
-    const shipping = subtotal >= 200000 ? 0 : 15000;
-    const total = subtotal + tax + shipping;
-    
+    const { subtotal, tax, shipping, total } = calculateSummary(getCartTotal());
+
     const subtotalEl = document.getElementById('subtotal');
     const taxEl = document.getElementById('tax');
     const shippingEl = document.getElementById('shipping');
@@ -254,8 +264,9 @@ function redirectToLogin() {
 function processPurchase() {
     const user = window.authSystem.getCurrentUser();
     const cart = getCart();
-    const total = getCartTotal() * 1.19; // Incluir IVA
-    
+    // Mismo cálculo que el resumen del carrito: subtotal + IVA + envío
+    const summary = calculateSummary(getCartTotal());
+
     // Generar número de orden
     const orderNumber = 'CHR-' + Date.now().toString(36).toUpperCase();
     
@@ -268,9 +279,10 @@ function processPurchase() {
             email: user.email
         },
         items: cart,
-        subtotal: getCartTotal(),
-        tax: getCartTotal() * 0.19,
-        total: total,
+        subtotal: summary.subtotal,
+        tax: summary.tax,
+        shipping: summary.shipping,
+        total: summary.total,
         date: new Date().toISOString(),
         status: 'confirmed'
     };
@@ -340,6 +352,8 @@ window.cartSystem = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initCart,
+        parsePrice,
+        calculateSummary,
         getCart,
         saveCart,
         addToCart,
