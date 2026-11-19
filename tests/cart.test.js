@@ -113,6 +113,32 @@ describe('operaciones del carrito', () => {
     });
 });
 
+describe('precios reales del catálogo (formato COP con puntos de miles)', () => {
+    test('getCartTotal interpreta "$23.999.000" como 23.999.000 pesos', () => {
+        cart.addToCart(reloj({ price: '$23.999.000' }));
+        expect(cart.getCartTotal()).toBe(23999000);
+    });
+
+    test('getCartTotal suma varios productos con separadores de miles', () => {
+        cart.addToCart(reloj({ id: 'a', price: '$639.000' }));
+        cart.addToCart(reloj({ id: 'b', price: '$1.599.000' }));
+        cart.updateQuantity('b', 2);
+        expect(cart.getCartTotal()).toBe(639000 + 2 * 1599000);
+    });
+
+    test('el total de la orden incluye IVA y envío, igual que el resumen', () => {
+        document.body.innerHTML = '<strong id="orderNumber"></strong><div id="purchaseModal"></div>';
+        window.authSystem = fakeAuth(demoUser);
+        cart.addToCart(reloj({ price: '$150.000' }));
+        cart.processPurchase();
+        const [order] = JSON.parse(localStorage.getItem('orders'));
+        expect(order.subtotal).toBe(150000);
+        expect(order.tax).toBe(28500);
+        expect(order.shipping).toBe(15000);
+        expect(order.total).toBe(193500);
+    });
+});
+
 describe('interfaz del carrito', () => {
     beforeEach(() => {
         document.body.innerHTML = CART_PAGE;
