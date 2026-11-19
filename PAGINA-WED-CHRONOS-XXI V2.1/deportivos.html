@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relojes Deportivos - CHRONOS XXI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="imagenes/Logo_relog.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="imagenes/Logo_relog.png" type="image/png">
+    <link rel="apple-touch-icon" href="imagenes/Logo_relog.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><h1>CHRONOS XXI</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#servicios">Servicios <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#reparacion">Reparación</a></li>
+                            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+                            <li><a href="index.html#garantia">Garantía</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#categorias">Categorías <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="clasicos.html">Clásicos</a></li>
+                            <li><a href="tecnologicos.html">Tecnológicos</a></li>
+                            <li><a href="deportivos.html">Deportivos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="login.html" class="nav-icon" id="userIcon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="carrito.html" class="nav-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero sport-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <i class="fas fa-running hero-icon"></i>
+            <h2>Relojes Deportivos</h2>
+            <p>Rendimiento Extremo en tu Muñeca</p>
+        </div>
+    </section>
+
+    <section class="category-intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2>Diseñados para la Acción</h2>
+                <p>Relojes diseñados para soportar las condiciones más extremas. Resistentes al agua, a los impactos y al paso del tiempo. El compañero perfecto para deportistas, aventureros y hombres activos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-gallery">
+        <div class="container">
+            <h2 class="section-title">Colección Destacada</h2>
+            <div class="products-grid">
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <div class="product-badge sport-badge">NUEVO</div>
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>G-Shock Mudmaster</h3>
+                        <p class="brand">CASIO</p>
+                        <p class="description">Resistencia a lodo y polvo, construcción de carbono</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-water"></i> 200m</span>
+                            <span><i class="fas fa-shield-alt"></i> Shock</span>
+                        </div>
+                        <div class="product-price">$1.599.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('g-shock-mudmaster')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Carrera Chronograph</h3>
+                        <p class="brand">TAG HEUER</p>
+                        <p class="description">Cronómetro profesional, taquímetro integrado</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-clock"></i> Crono</span>
+                            <span><i class="fas fa-water"></i> 100m</span>
+                        </div>
+                        <div class="product-price">$13.199.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('carrera-chronograph')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <div class="product-badge sport-badge exclusive">EXCLUSIVO</div>
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Suunto 9 Peak Pro</h3>
+                        <p class="brand">SUUNTO</p>
+                        <p class="description">Titanio, GPS de triple frecuencia, batería 170h</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-mountain"></i> Montaña</span>
+                            <span><i class="fas fa-battery-full"></i> 170h</span>
+                        </div>
+                        <div class="product-price">$2.799.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('suunto-9-peak-pro')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Rangeman Solar</h3>
+                        <p class="brand">CASIO</p>
+                        <p class="description">Energía solar, triple sensor (brújula, altímetro, barómetro)</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-sun"></i> Solar</span>
+                            <span><i class="fas fa-compass"></i> Sensor</span>
+                        </div>
+                        <div class="product-price">$1.799.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('rangeman-solar')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Expedition Field</h3>
+                        <p class="brand">TIMEX</p>
+                        <p class="description">Diseño militar, iluminación INDIGLO, correa de nylon</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-lightbulb"></i> Luz</span>
+                            <span><i class="fas fa-water"></i> 100m</span>
+                        </div>
+                        <div class="product-price">$639.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('expedition-field')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image sport-bg">
+                        <div class="product-badge sport-badge">OFERTA</div>
+                        <i class="fas fa-stopwatch product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Prospex Diver</h3>
+                        <p class="brand">SEIKO</p>
+                        <p class="description">Reloj de buceo automático, certificado ISO 6425</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-swimmer"></i> Buceo</span>
+                            <span><i class="fas fa-water"></i> 200m</span>
+                        </div>
+                        <div class="product-price">$2.399.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('prospex-diver')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section sport-section">
+        <div class="container">
+            <h2 class="section-title">Características de Nuestros Relojes Deportivos</h2>
+            <div class="features-grid-page">
+                <div class="feature-box sport-box">
+                    <i class="fas fa-hammer"></i>
+                    <h3>Resistencia Extrema</h3>
+                    <p>Resistentes a golpes, caídas y condiciones adversas</p>
+                </div>
+                <div class="feature-box sport-box">
+                    <i class="fas fa-water"></i>
+                    <h3>Sumergibles</h3>
+                    <p>Desde 50m hasta 300m de profundidad según modelo</p>
+                </div>
+                <div class="feature-box sport-box">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Funciones Tácticas</h3>
+                    <p>Cronógrafos, taquímetros, altímetros y más</p>
+                </div>
+                <div class="feature-box sport-box">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Materiales Premium</h3>
+                    <p>Titanio, carbono, acero endurecido y silicona</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section sport-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para la Aventura?</h2>
+                <p>Encuentra el reloj deportivo que aguante tu ritmo de vida</p>
+                <a href="index.html#contacto" class="btn-primary btn-large">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CHRONOS XXI</h3>
+                    <p>Elegancia y precisión en cada momento</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#productos">Productos</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#categorias">Categorías</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CHRONOS XXI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>

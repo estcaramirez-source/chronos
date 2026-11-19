@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - CHRONOS XXI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="imagenes/Logo_relog.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="imagenes/Logo_relog.png" type="image/png">
+    <link rel="apple-touch-icon" href="imagenes/Logo_relog.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><h1>CHRONOS XXI</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#servicios">Servicios <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="reparacion.html">Reparación</a></li>
+                            <li><a href="mantenimiento.html">Mantenimiento</a></li>
+                            <li><a href="garantia.html">Garantía</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#categorias">Categorías <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="clasicos.html">Clásicos</a></li>
+                            <li><a href="tecnologicos.html">Tecnológicos</a></li>
+                            <li><a href="deportivos.html">Deportivos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="login.html" class="nav-icon" id="userIconNav">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="carrito.html" class="nav-icon active" id="cartIconNav">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadgeNav">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-cart"></i> Mi Carrito de Compras</h2>
+                <p id="userGreeting">Bienvenido</p>
+            </div>
+
+            <!-- Carrito Vacío -->
+            <div class="empty-cart" id="emptyCart" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Tu carrito está vacío</h3>
+                <p>¡Explora nuestra colección y encuentra el reloj perfecto para ti!</p>
+                <div class="empty-cart-buttons">
+                    <a href="clasicos.html" class="btn-primary">Ver Relojes Clásicos</a>
+                    <a href="tecnologicos.html" class="btn-secondary">Ver Smartwatches</a>
+                    <a href="deportivos.html" class="btn-secondary">Ver Relojes Deportivos</a>
+                </div>
+            </div>
+
+            <!-- Contenido del Carrito -->
+            <div class="cart-content" id="cartContent">
+                <div class="cart-items" id="cartItems">
+                    <!-- Los items se cargarán dinámicamente -->
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3><i class="fas fa-receipt"></i> Resumen del Pedido</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Envío</span>
+                            <span id="shipping">Gratis</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>IVA (19%)</span>
+                            <span id="tax">$0</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total">$0</span>
+                        </div>
+                        
+                        <button class="btn-checkout" id="checkoutBtn">
+                            <i class="fas fa-lock"></i> Proceder al Pago
+                        </button>
+                        
+                        <a href="index.html" class="btn-continue">
+                            <i class="fas fa-arrow-left"></i> Continuar Comprando
+                        </a>
+                    </div>
+
+                    <div class="summary-benefits">
+                        <h4>Beneficios de tu compra</h4>
+                        <ul>
+                            <li><i class="fas fa-truck"></i> Envío gratis en compras superiores a $200.000</li>
+                            <li><i class="fas fa-shield-alt"></i> Garantía oficial del fabricante</li>
+                            <li><i class="fas fa-undo"></i> Devoluciones dentro de 30 días</li>
+                            <li><i class="fas fa-headset"></i> Soporte técnico especializado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Login Required -->
+    <div class="modal" id="loginRequiredModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-lock"></i>
+                <h3>Inicia Sesión</h3>
+            </div>
+            <div class="modal-body">
+                <p>Para proceder con tu compra, necesitas iniciar sesión o crear una cuenta.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="redirectToLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+                <button class="btn-secondary" onclick="closeModal()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Compra -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <i class="fas fa-check-circle"></i>
+                <h3>¡Pedido Confirmado!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Tu pedido ha sido procesado exitosamente.</p>
+                <p>Número de orden: <strong id="orderNumber"></strong></p>
+                <p>Recibirás un correo de confirmación en breve.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="closeModalAndRedirect()">
+                    <i class="fas fa-home"></i> Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CHRONOS XXI</h3>
+                    <p>Elegancia y precisión en cada momento</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#productos">Productos</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#categorias">Categorías</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CHRONOS XXI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

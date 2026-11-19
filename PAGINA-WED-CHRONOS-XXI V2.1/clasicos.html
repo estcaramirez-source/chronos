@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relojes Clásicos - CHRONOS XXI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="imagenes/Logo_relog.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="imagenes/Logo_relog.png" type="image/png">
+    <link rel="apple-touch-icon" href="imagenes/Logo_relog.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><h1>CHRONOS XXI</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#servicios">Servicios <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#reparacion">Reparación</a></li>
+                            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+                            <li><a href="index.html#garantia">Garantía</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#categorias">Categorías <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="clasicos.html">Clásicos</a></li>
+                            <li><a href="tecnologicos.html">Tecnológicos</a></li>
+                            <li><a href="deportivos.html">Deportivos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="login.html" class="nav-icon" id="userIcon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="carrito.html" class="nav-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero clasicos-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <i class="fas fa-crown hero-icon"></i>
+            <h2>Relojes Clásicos</h2>
+            <p>Elegancia Atemporal en tu Muñeca</p>
+        </div>
+    </section>
+
+    <section class="category-intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2>La Esencia de la Relojería Tradicional</h2>
+                <p>Nuestros relojes clásicos representan la cúspide de la maestría relojera. Cada pieza es un testimonio de siglos de tradición, combinando movimientos mecánicos precisos con diseños atemporales que trascienden las modas pasajeras.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-gallery">
+        <div class="container">
+            <h2 class="section-title">Colección Destacada</h2>
+            <div class="products-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-badge">NUEVO</div>
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegance Master</h3>
+                        <p class="brand">ROLEX</p>
+                        <p class="description">Movimiento mecánico suizo, caja de acero inoxidable con baño de oro de 18k</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Automático</span>
+                            <span><i class="fas fa-water"></i> 50m</span>
+                        </div>
+                        <div class="product-price">$23.999.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('elegance-master')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Seamaster Classic</h3>
+                        <p class="brand">OMEGA</p>
+                        <p class="description">Correa de cuero italiano genuino, esfera plateada con índices romanos</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Mecánico</span>
+                            <span><i class="fas fa-water"></i> 30m</span>
+                        </div>
+                        <div class="product-price">$17.199.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('seamaster-classic')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-badge exclusive">EXCLUSIVO</div>
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Heritage Collection</h3>
+                        <p class="brand">PATEK PHILIPPE</p>
+                        <p class="description">Edición limitada, calibre manual, cristal de zafiro antirreflejos</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                            <span><i class="fas fa-gem"></i> Zafiro</span>
+                        </div>
+                        <div class="product-price">$50.000.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('heritage-collection')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Prestige Gold</h3>
+                        <p class="brand">TISSOT</p>
+                        <p class="description">Diseño minimalista, correa de piel de cocodrilo, movimiento suizo</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Automático</span>
+                            <span><i class="fas fa-shield-alt"></i> 3 años</span>
+                        </div>
+                        <div class="product-price">$11.199.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('prestige-gold')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Royal Timepiece</h3>
+                        <p class="brand">LONGINES</p>
+                        <p class="description">Acero inoxidable pulido, esfera negra con acabado sunray</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Cuarzo</span>
+                            <span><i class="fas fa-water"></i> 100m</span>
+                        </div>
+                        <div class="product-price">$7.599.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('royal-timepiece')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-badge">OFERTA</div>
+                        <i class="fas fa-clock product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Distinguished Gent</h3>
+                        <p class="brand">SEIKO</p>
+                        <p class="description">Tradición japonesa, reserva de marcha de 72 horas</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-cog"></i> Automático</span>
+                            <span><i class="fas fa-battery-full"></i> 72h</span>
+                        </div>
+                        <div class="product-price">$3.599.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('distinguished-gent')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Características de Nuestros Relojes Clásicos</h2>
+            <div class="features-grid-page">
+                <div class="feature-box">
+                    <i class="fas fa-gem"></i>
+                    <h3>Movimientos Premium</h3>
+                    <p>Calibres suizos y japoneses de la más alta precisión</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-award"></i>
+                    <h3>Materiales Noble</h3>
+                    <p>Oro, platino, acero inoxidable 316L y cueros exóticos</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certificación Oficial</h3>
+                    <p>Cada reloj incluye certificado de autenticidad</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-history"></i>
+                    <h3>Garantía Extendida</h3>
+                    <p>Hasta 5 años de garantía internacional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Necesitas Asesoría?</h2>
+                <p>Nuestros expertos están listos para ayudarte a encontrar el reloj clásico perfecto</p>
+                <a href="index.html#contacto" class="btn-primary btn-large">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CHRONOS XXI</h3>
+                    <p>Elegancia y precisión en cada momento</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#productos">Productos</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#categorias">Categorías</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CHRONOS XXI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>

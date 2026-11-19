@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relojes Tecnológicos - CHRONOS XXI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="imagenes/Logo_relog.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="imagenes/Logo_relog.png" type="image/png">
+    <link rel="apple-touch-icon" href="imagenes/Logo_relog.png">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><h1>CHRONOS XXI</h1></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#productos">Productos</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#servicios">Servicios <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#reparacion">Reparación</a></li>
+                            <li><a href="index.html#mantenimiento">Mantenimiento</a></li>
+                            <li><a href="index.html#garantia">Garantía</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#categorias">Categorías <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="clasicos.html">Clásicos</a></li>
+                            <li><a href="tecnologicos.html">Tecnológicos</a></li>
+                            <li><a href="deportivos.html">Deportivos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="login.html" class="nav-icon" id="userIcon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="carrito.html" class="nav-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero tech-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <i class="fas fa-microchip hero-icon"></i>
+            <h2>Relojes Tecnológicos</h2>
+            <p>Innovación Inteligente en tu Muñeca</p>
+        </div>
+    </section>
+
+    <section class="category-intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2>La Vanguardia de la Tecnología Wearable</h2>
+                <p>Smartwatches que combinan funcionalidad avanzada con diseño elegante. Monitorea tu salud, mantente conectado y gestiona tu día a día con la última tecnología en tu muñeca.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-gallery">
+        <div class="container">
+            <h2 class="section-title">Colección Destacada</h2>
+            <div class="products-grid">
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <div class="product-badge tech-badge">NUEVO</div>
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Watch Ultra Pro</h3>
+                        <p class="brand">APPLE</p>
+                        <p class="description">Pantalla OLED siempre activa, GPS dual, resistencia extrema</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-heartbeat"></i> ECG</span>
+                            <span><i class="fas fa-route"></i> GPS</span>
+                        </div>
+                        <div class="product-price">$3.599.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('watch-ultra-pro')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Galaxy Watch 6 Pro</h3>
+                        <p class="brand">SAMSUNG</p>
+                        <p class="description">Análisis de composición corporal, batería de 3 días</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-battery-full"></i> 72h</span>
+                            <span><i class="fas fa-running"></i> 90+ deportes</span>
+                        </div>
+                        <div class="product-price">$2.199.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('galaxy-watch-6-pro')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <div class="product-badge tech-badge exclusive">EXCLUSIVO</div>
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fenix 7X Solar</h3>
+                        <p class="brand">GARMIN</p>
+                        <p class="description">Carga solar, mapas topográficos precargados, titanio</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-sun"></i> Solar</span>
+                            <span><i class="fas fa-map"></i> Mapas</span>
+                        </div>
+                        <div class="product-price">$3.999.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('fenix-7x-solar')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sense 2 Advanced</h3>
+                        <p class="brand">FITBIT</p>
+                        <p class="description">Monitoreo de estrés, análisis de sueño avanzado</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-bed"></i> Sueño</span>
+                            <span><i class="fas fa-spa"></i> Estrés</span>
+                        </div>
+                        <div class="product-price">$1.399.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('sense-2-advanced')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Venu 3 Elite</h3>
+                        <p class="brand">GARMIN</p>
+                        <p class="description">Pantalla AMOLED brillante, asistente de voz integrado</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-microphone"></i> Voz</span>
+                            <span><i class="fas fa-music"></i> Spotify</span>
+                        </div>
+                        <div class="product-price">$1.999.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('venu-3-elite')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-image tech-bg">
+                        <div class="product-badge tech-badge">OFERTA</div>
+                        <i class="fas fa-mobile-alt product-placeholder"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Versa 4 Sport</h3>
+                        <p class="brand">FITBIT</p>
+                        <p class="description">Ideal para fitness, GPS integrado, notificaciones smart</p>
+                        <div class="product-features">
+                            <span><i class="fas fa-route"></i> GPS</span>
+                            <span><i class="fas fa-bell"></i> Smart</span>
+                        </div>
+                        <div class="product-price">$919.000</div>
+                        <button class="btn-add-cart" onclick="handleAddToCart('versa-4-sport')"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section tech-section">
+        <div class="container">
+            <h2 class="section-title">Características de Nuestros Smartwatches</h2>
+            <div class="features-grid-page">
+                <div class="feature-box tech-box">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Monitoreo de Salud</h3>
+                    <p>Frecuencia cardíaca, oxígeno en sangre, ECG y más</p>
+                </div>
+                <div class="feature-box tech-box">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Conectividad Total</h3>
+                    <p>Bluetooth, WiFi, NFC para pagos sin contacto</p>
+                </div>
+                <div class="feature-box tech-box">
+                    <i class="fas fa-mobile-screen"></i>
+                    <h3>Pantallas Premium</h3>
+                    <p>AMOLED, OLED, Retina con alta resolución</p>
+                </div>
+                <div class="feature-box tech-box">
+                    <i class="fas fa-battery-three-quarters"></i>
+                    <h3>Batería Duradera</h3>
+                    <p>Hasta 7 días de autonomía según modelo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section tech-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Buscas el Smartwatch Perfecto?</h2>
+                <p>Te ayudamos a encontrar el dispositivo ideal para tu estilo de vida</p>
+                <a href="index.html#contacto" class="btn-primary btn-large">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>CHRONOS XXI</h3>
+                    <p>Elegancia y precisión en cada momento</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#productos">Productos</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#categorias">Categorías</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CHRONOS XXI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>

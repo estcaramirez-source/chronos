@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CHRONOS XXI — relojes clásicos, deportivos y tecnológicos para hombre.">
+  <title>CHRONOS XXI | Relojería Premium</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="imagenes/Logo_relog.png" type="image/png">
+</head>
+<body class="landing-page">
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <a href="#inicio" class="brand" aria-label="CHRONOS XXI inicio">
+          <img src="imagenes/Logo_relog.png" alt="CHRONOS XXI">
+          <span><strong>CHRONOS</strong><small>XXI</small></span>
+        </a>
+
+        <button class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="login.html" class="nav-action" aria-label="Iniciar sesión"><i class="fas fa-user"></i></a>
+          <a href="carrito.html" class="nav-action cart-link" aria-label="Carrito">
+            <i class="fas fa-bag-shopping"></i><span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="landing-hero">
+      <div class="hero-backdrop"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> RELOJERÍA PREMIUM</p>
+          <h1>El tiempo también<br><em>define tu estilo.</em></h1>
+          <p class="hero-lead">Descubre una selección de relojes clásicos, deportivos y tecnológicos creada para hombres que exigen precisión, diseño y carácter.</p>
+          <div class="hero-actions">
+            <a href="#coleccion" class="btn-primary">Explorar colección <i class="fas fa-arrow-right"></i></a>
+            <a href="#categorias" class="btn-ghost">Ver categorías</a>
+          </div>
+          <div class="hero-trust">
+            <span><i class="fas fa-shield-halved"></i> Garantía oficial</span>
+            <span><i class="fas fa-truck-fast"></i> Envío seguro</span>
+            <span><i class="fas fa-certificate"></i> 100% auténtico</span>
+          </div>
+        </div>
+        <div class="hero-watch" aria-hidden="true">
+          <div class="watch-glow"></div>
+          <div class="watch-frame">
+            <img src="imagenes/Logo_relog.png" alt="">
+            <div class="watch-face">
+              <span class="marker m12">12</span><span class="marker m3">3</span><span class="marker m6">6</span><span class="marker m9">9</span>
+              <span class="hand hour"></span><span class="hand minute"></span><span class="hand second"></span>
+              <span class="center-dot"></span>
+            </div>
+            <div class="watch-crown"></div>
+          </div>
+          <div class="hero-floating"><strong>XXI</strong><span>PRECISIÓN<br>ATEMPORAL</span></div>
+        </div>
+      </div>
+      <a href="#coleccion" class="scroll-indicator"><span></span> DESLIZA</a>
+    </section>
+
+    <section class="brand-strip">
+      <div class="container brand-strip-inner">
+        <span>ROLEX</span><span>OMEGA</span><span>TAG HEUER</span><span>SEIKO</span><span>CASIO</span><span>GARMIN</span>
+      </div>
+    </section>
+
+    <section id="coleccion" class="landing-section collection-section">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">SELECCIÓN CHRONOS XXI</p><h2>Piezas que hablan<br><em>por sí solas.</em></h2></div>
+          <p>Una selección de modelos destacados para acompañar cada momento. Elige tu estilo y descubre todos los detalles.</p>
+        </div>
+        <div id="featuredProducts" class="featured-grid"></div>
+        <div class="center-action"><a href="clasicos.html" class="btn-secondary">Ver toda la colección <i class="fas fa-arrow-right"></i></a></div>
+      </div>
+    </section>
+
+    <section id="categorias" class="categories-section">
+      <div class="container">
+        <div class="section-heading compact">
+          <div><p class="eyebrow">ENCUENTRA TU ESTILO</p><h2>Tres formas de llevar<br><em>el tiempo.</em></h2></div>
+        </div>
+        <div class="category-grid">
+          <a href="clasicos.html" class="category-card category-classic">
+            <img src="imagenes/Banner_clasico.jpg" alt="Relojes clásicos">
+            <div class="category-overlay"><span>01</span><div><p>TRADICIÓN</p><h3>Clásicos</h3><small>Elegancia que nunca pasa.</small></div><i class="fas fa-arrow-right"></i></div>
+          </a>
+          <a href="deportivos.html" class="category-card category-sport">
+            <img src="imagenes/Banner_deportivos.jpg" alt="Relojes deportivos">
+            <div class="category-overlay"><span>02</span><div><p>ADRENALINA</p><h3>Deportivos</h3><small>Rendimiento sin límites.</small></div><i class="fas fa-arrow-right"></i></div>
+          </a>
+          <a href="tecnologicos.html" class="category-card category-tech">
+            <img src="imagenes/Banner_tecnologico.jpg" alt="Relojes tecnológicos">
+            <div class="category-overlay"><span>03</span><div><p>INNOVACIÓN</p><h3>Tecnológicos</h3><small>El futuro en tu muñeca.</small></div><i class="fas fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section">
+      <div class="container story-grid">
+        <div class="story-image">
+          <div class="story-card-main"><span>CHRONOS</span><strong>XXI</strong></div>
+          <div class="story-card-small"><i class="fas fa-gem"></i><span>CALIDAD<br><b>SUPERIOR</b></span></div>
+        </div>
+        <div class="story-copy">
+          <p class="eyebrow">MÁS QUE UN RELOJ</p>
+          <h2>Tu tiempo.<br><em>Tu identidad.</em></h2>
+          <p>En CHRONOS XXI combinamos la relojería tradicional con la innovación contemporánea para ofrecer piezas que acompañan tu ritmo de vida.</p>
+          <p>Seleccionamos cada modelo pensando en precisión, materiales, diseño y respaldo. Porque un buen reloj no solo marca la hora: marca presencia.</p>
+          <div class="story-features">
+            <div><i class="fas fa-certificate"></i><span><b>Autenticidad</b>Productos respaldados.</span></div>
+            <div><i class="fas fa-user-tie"></i><span><b>Asesoría</b>Atención especializada.</span></div>
+            <div><i class="fas fa-shield-halved"></i><span><b>Respaldo</b>Garantía y postventa.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" class="services-section">
+      <div class="container">
+        <div class="section-heading compact centered">
+          <div><p class="eyebrow">SERVICIO CHRONOS XXI</p><h2>También cuidamos<br><em>tu reloj.</em></h2></div>
+          <p>Conserva el rendimiento y la apariencia de tu pieza con nuestro servicio especializado.</p>
+        </div>
+        <div class="services-grid">
+          <a href="reparacion.html" class="service-card"><i class="fas fa-screwdriver-wrench"></i><span>01</span><h3>Reparación</h3><p>Diagnóstico y reparación especializada para recuperar el funcionamiento de tu reloj.</p><b>Conocer servicio <i class="fas fa-arrow-right"></i></b></a>
+          <a href="mantenimiento.html" class="service-card"><i class="fas fa-gears"></i><span>02</span><h3>Mantenimiento</h3><p>Limpieza, revisión y mantenimiento preventivo para prolongar la vida de tu pieza.</p><b>Conocer servicio <i class="fas fa-arrow-right"></i></b></a>
+          <a href="garantia.html" class="service-card"><i class="fas fa-shield-halved"></i><span>03</span><h3>Garantía</h3><p>Protección y respaldo para que disfrutes tu compra con tranquilidad.</p><b>Conocer servicio <i class="fas fa-arrow-right"></i></b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="numbers-section">
+      <div class="container numbers-grid">
+        <div><strong>15+</strong><span>AÑOS DE EXPERIENCIA</span></div>
+        <div><strong>10K+</strong><span>CLIENTES SATISFECHOS</span></div>
+        <div><strong>500+</strong><span>MODELOS DISPONIBLES</span></div>
+        <div><strong>100%</strong><span>AUTENTICIDAD</span></div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-copy"><p class="eyebrow">HABLEMOS</p><h2>¿Buscas un reloj<br><em>especial?</em></h2><p>Escríbenos y recibe asesoría para encontrar la pieza que mejor encaje contigo.</p><div class="contact-list"><span><i class="fas fa-phone"></i> +57 300 123 4567</span><span><i class="fas fa-envelope"></i> info@chronosxxi.com</span><span><i class="fas fa-location-dot"></i> Av. Principal 123, Centro Comercial</span></div></div>
+        <form class="contacto-form contact-form">
+          <div class="form-row"><input type="text" placeholder="Nombre" required><input type="email" placeholder="Correo electrónico" required></div>
+          <input type="tel" placeholder="Teléfono" required><textarea placeholder="¿En qué podemos ayudarte?" rows="5" required></textarea>
+          <button type="submit" class="btn-primary">Enviar mensaje <i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <div class="container footer-top">
+      <div class="footer-brand"><a href="#inicio" class="brand"><img src="imagenes/Logo_relog.png" alt="CHRONOS XXI"><span><strong>CHRONOS</strong><small>XXI</small></span></a><p>Elegancia y precisión en cada momento.</p></div>
+      <div><h4>Explorar</h4><a href="#coleccion">Colección</a><a href="#categorias">Categorías</a><a href="#servicios">Servicios</a></div>
+      <div><h4>Ayuda</h4><a href="garantia.html">Garantía</a><a href="mantenimiento.html">Mantenimiento</a><a href="#contacto">Contacto</a></div>
+      <div><h4>Síguenos</h4><div class="footer-social"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 CHRONOS XXI. Todos los derechos reservados.</span><span>Diseñado para el hombre que sabe lo que quiere.</span></div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="auth.js"></script>
+  <script src="cart.js"></script>
+  <script src="products.js"></script>
+  <script>
+    // Productos destacados: se alimentan del mismo catálogo que usan las páginas internas.
+    const featuredIds = ['elegance-master','watch-ultra-pro','g-shock-mudmaster','prestige-gold'];
+    const featuredContainer = document.getElementById('featuredProducts');
+    const money = value => new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',minimumFractionDigits:0}).format(parseFloat(String(value).replace(/[^0-9]/g,'')));
+    featuredContainer.innerHTML = featuredIds.map(id => {
+      const p = productsDatabase[id];
+      return `<article class="featured-card">
+        <a class="featured-image" href="${p.category === 'Clásicos' ? 'clasicos.html' : p.category === 'Tecnológicos' ? 'tecnologicos.html' : 'deportivos.html'}">
+          <span class="product-category">${p.category}</span><img src="${p.image}" alt="${p.name}" loading="lazy">
+        </a>
+        <div class="featured-info"><span>${p.brand}</span><h3>${p.name}</h3><p>${p.description}</p><div class="featured-bottom"><strong>${money(p.price)}</strong><button type="button" onclick="handleAddToCart('${p.id}')" aria-label="Agregar ${p.name} al carrito"><i class="fas fa-plus"></i></button></div></div>
+      </article>`;
+    }).join('');
+
+    // Evita errores del script general en elementos que no existen en la landing.
+    const originalHamburger = document.querySelector('.hamburger');
+    if (originalHamburger) originalHamburger.setAttribute('aria-expanded','false');
+  </script>
+</body>
+</html>
