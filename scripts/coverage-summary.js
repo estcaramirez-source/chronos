@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
+// Códigos de color ANSI (ESC[...m) que Jest incluye en los mensajes de error.
+const ANSI_COLORS = new RegExp(`${String.fromCharCode(27)}\\[[0-9;]*m`, 'g');
 const readJson = (rel) => {
     const file = path.join(root, rel);
     return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
@@ -34,7 +36,7 @@ if (results) {
                 file: path.relative(root, suite.name).replace(/\\/g, '/'),
                 name: a.fullName,
                 detail: (a.failureMessages[0] || '')
-                    .replace(/\u001b\[[0-9;]*m/g, '')
+                    .replace(ANSI_COLORS, '')
                     .split('\n').map(l => l.trim()).filter(Boolean).slice(0, 4).join(' | ')
             }))
     );
