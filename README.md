@@ -1,6 +1,6 @@
 # 🕐 CHRONOS XXI - E-Commerce de Relojes Premium
 
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+[![CI](https://github.com/estcaramirez-source/chronos/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/estcaramirez-source/chronos/actions/workflows/ci.yml)
 
 
 **Sistema de E-Commerce Completo con Autenticación y Carrito de Compras**
