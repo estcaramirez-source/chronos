@@ -75,7 +75,7 @@ const contactForm = document.querySelector('.contacto-form');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const formData = new FormData(contactForm);
+    // El envío real del formulario se implementará cuando exista backend (ver Roadmap v3.0).
     
     // Aquí puedes agregar la lógica para enviar el formulario
     alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');

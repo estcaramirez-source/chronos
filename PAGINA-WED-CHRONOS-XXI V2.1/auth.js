@@ -300,3 +300,16 @@ window.authSystem = {
     logout,
     checkSession
 };
+
+// Exportación para pruebas automatizadas (Node/Jest). En el navegador `module` no existe y se ignora.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        showMessage,
+        generateId,
+        validateEmail,
+        checkSession,
+        isLoggedIn,
+        getCurrentUser,
+        logout
+    };
+}

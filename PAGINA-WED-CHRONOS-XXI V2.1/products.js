@@ -259,3 +259,12 @@ document.head.appendChild(notificationStyles);
 
 // Exportar función
 window.handleAddToCart = handleAddToCart;
+
+// Exportación para pruebas automatizadas (Node/Jest). En el navegador `module` no existe y se ignora.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        productsDatabase,
+        handleAddToCart,
+        showAddToCartNotification
+    };
+}

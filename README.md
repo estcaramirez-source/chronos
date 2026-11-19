@@ -1,5 +1,7 @@
 # 🕐 CHRONOS XXI - E-Commerce de Relojes Premium
 
+[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+
 
 **Sistema de E-Commerce Completo con Autenticación y Carrito de Compras**
 
@@ -410,6 +412,30 @@ const SHIPPING_COST = 15000;              // $15K
     --color-secondary: #tu-color;
 }
 ```
+
+---
+
+## 🔁 Integración Continua
+
+El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (GitHub Actions, `ubuntu-latest`, Node.js 20) y se ejecuta en cada *push* a `main` / `develop` y en cada *pull request*.
+
+| Etapa | Comando | Falla si… |
+|---|---|---|
+| Instalación (con caché npm) | `npm install` | no se pueden resolver dependencias |
+| Análisis estático | `npm run lint` | hay 1 error o advertencia de ESLint |
+| Auditoría | `npm audit --audit-level=critical` | hay una vulnerabilidad crítica |
+| Pruebas + cobertura | `npm run test:ci` | falla una prueba o la cobertura baja del umbral (`jest.config.js`) |
+| Reporte | artefacto `reportes-ci-N` (coverage + JUnit) | — |
+| Staging | `docker build` + `scripts/smoke-test.sh` | una página no responde 200 |
+
+Ejecutar lo mismo en local (requiere Node.js ≥ 20):
+
+```bash
+npm install
+npm run ci          # lint + pruebas + cobertura
+```
+
+Documentación del taller: [`docs/taller-u3-ci.md`](docs/taller-u3-ci.md) · [`docs/informe-ci-v1.0.md`](docs/informe-ci-v1.0.md)
 
 ---
 

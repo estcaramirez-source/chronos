@@ -335,3 +335,29 @@ window.cartSystem = {
     getCartCount,
     updateCartBadge
 };
+
+// Exportación para pruebas automatizadas (Node/Jest). En el navegador `module` no existe y se ignora.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initCart,
+        getCart,
+        saveCart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        getCartTotal,
+        getCartCount,
+        updateCartBadge,
+        renderCart,
+        updateCartSummary,
+        formatPrice,
+        changeQuantity,
+        removeItem,
+        showLoginModal,
+        closeModal,
+        redirectToLogin,
+        processPurchase,
+        closeModalAndRedirect
+    };
+}
