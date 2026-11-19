@@ -417,7 +417,7 @@ const SHIPPING_COST = 15000;              // $15K
 
 ## 🔁 Integración Continua
 
-El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (GitHub Actions, `ubuntu-latest`, Node.js 20) y se ejecuta en cada *push* a `main` / `develop` y en cada *pull request*.
+El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (GitHub Actions, `ubuntu-latest`, Node.js 22 LTS) y se ejecuta en cada *push* a `main` / `develop` y en cada *pull request*.
 
 | Etapa | Comando | Falla si… |
 |---|---|---|
@@ -428,7 +428,7 @@ El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (Git
 | Reporte | artefacto `reportes-ci-N` (coverage + JUnit) | — |
 | Staging | `docker build` + `scripts/smoke-test.sh` | una página no responde 200 |
 
-Ejecutar lo mismo en local (requiere Node.js ≥ 20):
+Ejecutar lo mismo en local (requiere Node.js ≥ 22):
 
 ```bash
 npm install

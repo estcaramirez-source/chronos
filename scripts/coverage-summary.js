@@ -25,6 +25,27 @@ if (results) {
         ''
     );
     console.log(`::notice title=Pruebas::${results.numPassedTests}/${results.numTotalTests} aprobadas, ${results.numFailedTests} fallidas`);
+
+    // Cada prueba fallida se reporta como anotación de error y en la tabla del resumen.
+    const fallidas = results.testResults.flatMap(suite =>
+        suite.assertionResults
+            .filter(a => a.status === 'failed')
+            .map(a => ({
+                file: path.relative(root, suite.name).replace(/\\/g, '/'),
+                name: a.fullName,
+                detail: (a.failureMessages[0] || '')
+                    .replace(/\u001b\[[0-9;]*m/g, '')
+                    .split('\n').map(l => l.trim()).filter(Boolean).slice(0, 4).join(' | ')
+            }))
+    );
+    if (fallidas.length) {
+        lines.push('**Pruebas fallidas:**', '');
+        fallidas.forEach(f => {
+            lines.push(`- \`${f.file}\` › ${f.name}`);
+            console.log(`::error file=${f.file},title=Prueba fallida::${f.name} -> ${f.detail}`);
+        });
+        lines.push('');
+    }
 }
 
 if (coverage) {

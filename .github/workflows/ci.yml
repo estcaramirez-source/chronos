@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
 
 jobs:
   build:
@@ -31,10 +31,10 @@ jobs:
       pull-requests: write   # solo para comentar el reporte en el PR
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configurar Node.js con caché de dependencias
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -58,7 +58,7 @@ jobs:
 
       - name: Publicar reportes como artefacto
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: reportes-ci-${{ github.run_number }}
           path: |
@@ -69,7 +69,7 @@ jobs:
 
       - name: Comentar el reporte en el pull request
         if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -96,7 +96,7 @@ jobs:
       STAGING_PORT: '8080'
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Construir imagen de staging
         run: |
