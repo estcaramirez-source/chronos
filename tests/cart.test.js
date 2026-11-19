@@ -201,6 +201,8 @@ describe('interfaz del carrito', () => {
     });
 
     test('clic sobre el fondo del modal lo cierra', () => {
+        // En la página real auth.js se carga antes que cart.js
+        window.authSystem = fakeAuth(null);
         cart = loadScript('cart.js');
         const modal = document.getElementById('loginRequiredModal');
         modal.style.display = 'flex';
