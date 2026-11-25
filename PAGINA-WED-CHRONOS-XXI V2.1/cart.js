@@ -19,7 +19,7 @@ function getCart() {
     try {
         const cart = JSON.parse(localStorage.getItem('cart'));
         return Array.isArray(cart) ? cart : [];
-    } catch (error) {
+    } catch {
         return [];
     }
 }
@@ -296,7 +296,7 @@ function processPurchase() {
     let orders;
     try {
         orders = JSON.parse(localStorage.getItem('orders')) || [];
-    } catch (error) {
+    } catch {
         orders = [];
     }
     orders.push(order);

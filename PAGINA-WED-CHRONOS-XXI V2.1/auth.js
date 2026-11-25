@@ -5,7 +5,7 @@
 function hasValidUsers() {
     try {
         return Array.isArray(JSON.parse(localStorage.getItem('users')));
-    } catch (error) {
+    } catch {
         return false;
     }
 }
@@ -241,7 +241,7 @@ function checkSession() {
     if (currentUser) {
         try {
             return JSON.parse(currentUser);
-        } catch (error) {
+        } catch {
             return null;
         }
     }
