@@ -42,6 +42,9 @@ function addToCart(product) {
     const existingProduct = cart.find(item => item.id === product.id);
     
     if (existingProduct) {
+        if (existingProduct.quantity >= 10) {
+            return false;
+        }
         existingProduct.quantity += 1;
     } else {
         cart.push({
@@ -66,13 +69,18 @@ function updateQuantity(productId, quantity) {
     const product = cart.find(item => item.id === productId);
     
     if (product) {
+        if (!Number.isInteger(quantity) || quantity > 10) {
+            return false;
+        }
         if (quantity <= 0) {
             removeFromCart(productId);
         } else {
             product.quantity = quantity;
             saveCart(cart);
         }
+        return true;
     }
+    return false;
 }
 
 function clearCart() {
@@ -160,7 +168,7 @@ function renderCart() {
                     <i class="fas fa-minus"></i>
                 </button>
                 <input type="number" value="${item.quantity}" min="1" readonly>
-                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)">
+                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)" ${item.quantity >= 10 ? 'disabled' : ''}>
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
