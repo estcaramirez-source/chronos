@@ -7,7 +7,7 @@ module.exports = {
     clearMocks: true,
     restoreMocks: true,
     collectCoverageFrom: [
-        'PAGINA-WED-CHRONOS-XXI V2.1/{auth,cart,products}.js'
+        'PAGINA-WED-CHRONOS-XXI V2.1/{auth,cart,products,scripts}.js'
     ],
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'text-summary', 'lcov', 'json-summary', 'cobertura'],
