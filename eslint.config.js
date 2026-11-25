@@ -4,7 +4,7 @@ const globals = require('globals');
 
 module.exports = [
     {
-        ignores: ['node_modules/**', 'coverage/**', 'reports/**']
+        ignores: ['node_modules/**', 'coverage/**', 'reports/**', 'test-results/**', 'playwright-report/**']
     },
     js.configs.recommended,
     {
@@ -30,7 +30,7 @@ module.exports = [
     },
     {
         // Pruebas, configuración y scripts de CI (Node.js / CommonJS).
-        files: ['tests/**/*.js', 'scripts/**/*.js', '*.config.js'],
+        files: ['tests/**/*.js', 'e2e/**/*.js', 'scripts/**/*.js', '*.config.js'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: 'commonjs',

@@ -102,10 +102,10 @@ jobs:
             }
 
   staging-smoke:
-    name: Staging (Docker) y pruebas de humo
+    name: Staging (Docker), humo y aceptación E2E
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       APP_ENV: staging
       STAGING_PORT: '8080'
@@ -125,6 +125,38 @@ jobs:
 
       - name: Pruebas de humo posteriores al despliegue
         run: bash scripts/smoke-test.sh "http://localhost:${STAGING_PORT}"
+
+      - name: Configurar Node.js para las pruebas E2E
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Instalar dependencias y navegador Chromium
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      - name: Pruebas de aceptación E2E (Playwright contra staging)
+        env:
+          BASE_URL: http://localhost:${{ env.STAGING_PORT }}
+        run: npm run test:e2e
+
+      - name: Resumen de escenarios E2E
+        if: always()
+        run: node scripts/e2e-summary.js
+
+      - name: Publicar evidencias E2E (capturas, HTML, JUnit)
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reportes-e2e-${{ github.run_number }}
+          path: |
+            reports/
+            test-results/
+          retention-days: 14
+          if-no-files-found: warn
 
       - name: Logs del contenedor (solo si falla)
         if: failure()
