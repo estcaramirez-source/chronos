@@ -90,7 +90,10 @@ describe('regresión DEF-03: páginas sin formulario de contacto', () => {
         document.body.innerHTML = '<main>Contenido</main>';
 
         // Act
-        const cargar = () => loadScript('scripts.js');
+        const cargar = () => {
+            loadScript('scripts.js');
+            window.dispatchEvent(new Event('scroll'));
+        };
 
         // Assert
         expect(cargar).not.toThrow();

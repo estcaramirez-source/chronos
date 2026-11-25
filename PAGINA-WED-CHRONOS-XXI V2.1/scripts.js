@@ -2,19 +2,23 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', navMenu.classList.contains('active') ? 'true' : 'false');
-});
-
-// Cerrar menú al hacer clic en un enlace
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
+// Este archivo se carga en todas las páginas, pero no todas tienen los mismos
+// elementos: cada bloque verifica que su elemento exista antes de usarlo (DEF-03).
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', navMenu.classList.contains('active') ? 'true' : 'false');
     });
-});
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+}
 
 // Scroll suave
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -36,8 +40,9 @@ const navbar = document.querySelector('.navbar');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
+    if (!navbar) return;
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
     } else {
@@ -72,26 +77,28 @@ document.querySelectorAll('.producto-card, .servicio-card, .feature-card, .categ
 // Formulario de contacto
 const contactForm = document.querySelector('.contacto-form');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // El envío real del formulario se implementará cuando exista backend (ver Roadmap v3.0).
-    
-    // Aquí puedes agregar la lógica para enviar el formulario
-    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-    contactForm.reset();
-});
+// Solo existe en index.html; antes se usaba sin verificar y rompía las demás páginas (DEF-03).
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // El envío real del formulario se implementará cuando exista backend (ver Roadmap v3.0).
+        alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+        contactForm.reset();
+    });
+}
 
 // Animación del logo
 const logo = document.querySelector('.logo h1');
-logo.addEventListener('mouseenter', () => {
-    logo.style.transform = 'scale(1.05)';
-    logo.style.transition = 'transform 0.3s ease';
-});
+if (logo) {
+    logo.addEventListener('mouseenter', () => {
+        logo.style.transform = 'scale(1.05)';
+        logo.style.transition = 'transform 0.3s ease';
+    });
 
-logo.addEventListener('mouseleave', () => {
-    logo.style.transform = 'scale(1)';
-});
+    logo.addEventListener('mouseleave', () => {
+        logo.style.transform = 'scale(1)';
+    });
+}
 
 // Contador animado para estadísticas
 function animateCounter(element, target) {
