@@ -53,7 +53,8 @@ test('INT-01 products + auth + cart: con sesión, agregar desde el catálogo cal
     expect(cart.getCartCount()).toBe(2);
     expect(cart.getCartTotal()).toBe(23999000 + 639000);
     expect(document.querySelector('.cart-badge').textContent).toBe('2');
-    expect(document.querySelector('.cart-notification').textContent).toContain('Expedition Field');
+    const notificaciones = document.querySelectorAll('.cart-notification');
+    expect(notificaciones[notificaciones.length - 1].textContent).toContain('Expedition Field');
 });
 
 test('INT-02 products + auth: sin sesión no se toca el carrito y se recuerda la página', () => {
