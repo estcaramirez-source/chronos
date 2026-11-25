@@ -2,8 +2,24 @@
 // SISTEMA DE AUTENTICACIÓN - CHRONOS XXI
 // ==========================================
 
-// Inicializar usuarios de prueba si no existen
-if (!localStorage.getItem('users')) {
+// Lee y decodifica un valor JSON del almacenamiento indicado.
+// Devuelve null si la clave no existe o su contenido está corrupto.
+function readStorageJSON(storage, key) {
+    try {
+        return JSON.parse(storage.getItem(key));
+    } catch {
+        return null;
+    }
+}
+
+// Lista de usuarios registrados; siempre devuelve un arreglo.
+function getUsers() {
+    const users = readStorageJSON(localStorage, 'users');
+    return Array.isArray(users) ? users : [];
+}
+
+// Inicializar usuarios de prueba si no existen o si la lista guardada está corrupta
+if (!Array.isArray(readStorageJSON(localStorage, 'users'))) {
     const defaultUsers = [
         {
             id: '1',
@@ -128,7 +144,7 @@ if (registerFormElement) {
         }
         
         // Verificar si el usuario ya existe
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const users = getUsers();
         const existingUser = users.find(u => u.email === email);
         
         if (existingUser) {
@@ -188,7 +204,7 @@ if (loginFormElement) {
         }
         
         // Verificar credenciales
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const users = getUsers();
         const user = users.find(u => u.email === email && u.password === password);
         
         if (!user) {
@@ -227,13 +243,9 @@ if (loginFormElement) {
 // VERIFICAR SESIÓN ACTIVA
 // ==========================================
 
+// Sesión "Recordarme" (localStorage) o de pestaña (sessionStorage); null si no hay o está corrupta.
 function checkSession() {
-    const currentUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-    
-    if (currentUser) {
-        return JSON.parse(currentUser);
-    }
-    return null;
+    return readStorageJSON(localStorage, 'currentUser') || readStorageJSON(sessionStorage, 'currentUser');
 }
 
 function isLoggedIn() {
@@ -281,7 +293,7 @@ if (forgotPasswordLink) {
         const email = prompt('Ingresa tu correo electrónico para recuperar tu contraseña:');
         
         if (email) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const users = getUsers();
             const user = users.find(u => u.email === email.toLowerCase());
             
             if (user) {
@@ -305,6 +317,8 @@ window.authSystem = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         showMessage,
+        readStorageJSON,
+        getUsers,
         generateId,
         validateEmail,
         checkSession,

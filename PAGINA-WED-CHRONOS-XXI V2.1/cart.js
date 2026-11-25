@@ -15,8 +15,19 @@ initCart();
 // FUNCIONES DEL CARRITO
 // ==========================================
 
+// Lee una lista JSON de localStorage. Si la clave no existe, está corrupta o no
+// contiene una lista, devuelve [] para que la tienda siga funcionando.
+function readStoredList(key) {
+    try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(value) ? value : [];
+    } catch {
+        return [];
+    }
+}
+
 function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+    return readStoredList('cart');
 }
 
 function saveCart(cart) {
@@ -288,7 +299,7 @@ function processPurchase() {
     };
     
     // Guardar orden en historial
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orders = readStoredList('orders');
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     
@@ -352,6 +363,7 @@ window.cartSystem = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initCart,
+        readStoredList,
         parsePrice,
         calculateSummary,
         getCart,
