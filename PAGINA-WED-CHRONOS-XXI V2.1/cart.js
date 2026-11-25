@@ -35,13 +35,24 @@ function saveCart(cart) {
     updateCartBadge();
 }
 
+// Regla de negocio RF06: máximo de unidades de una misma referencia por orden.
+const MAX_UNITS_PER_PRODUCT = 10;
+
+// Cantidad permitida: número entero y no mayor al máximo (0 o menos significa eliminar).
+function isAllowedQuantity(quantity) {
+    return Number.isInteger(quantity) && quantity <= MAX_UNITS_PER_PRODUCT;
+}
+
 function addToCart(product) {
     const cart = getCart();
-    
+
     // Verificar si el producto ya existe
     const existingProduct = cart.find(item => item.id === product.id);
-    
+
     if (existingProduct) {
+        if (!isAllowedQuantity(existingProduct.quantity + 1)) {
+            return false;
+        }
         existingProduct.quantity += 1;
     } else {
         cart.push({
@@ -65,14 +76,16 @@ function updateQuantity(productId, quantity) {
     const cart = getCart();
     const product = cart.find(item => item.id === productId);
     
-    if (product) {
-        if (quantity <= 0) {
-            removeFromCart(productId);
-        } else {
-            product.quantity = quantity;
-            saveCart(cart);
-        }
+    if (!product || !isAllowedQuantity(quantity)) {
+        return false;
     }
+    if (quantity <= 0) {
+        removeFromCart(productId);
+        return true;
+    }
+    product.quantity = quantity;
+    saveCart(cart);
+    return true;
 }
 
 function clearCart() {
@@ -160,7 +173,7 @@ function renderCart() {
                     <i class="fas fa-minus"></i>
                 </button>
                 <input type="number" value="${item.quantity}" min="1" readonly>
-                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)">
+                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)" ${item.quantity >= MAX_UNITS_PER_PRODUCT ? 'disabled' : ''}>
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
@@ -364,6 +377,8 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initCart,
         readStoredList,
+        MAX_UNITS_PER_PRODUCT,
+        isAllowedQuantity,
         parsePrice,
         calculateSummary,
         getCart,
