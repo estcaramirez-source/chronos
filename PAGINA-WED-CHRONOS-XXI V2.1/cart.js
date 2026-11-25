@@ -16,7 +16,12 @@ initCart();
 // ==========================================
 
 function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+    try {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        return Array.isArray(cart) ? cart : [];
+    } catch (error) {
+        return [];
+    }
 }
 
 function saveCart(cart) {
@@ -288,7 +293,12 @@ function processPurchase() {
     };
     
     // Guardar orden en historial
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let orders;
+    try {
+        orders = JSON.parse(localStorage.getItem('orders')) || [];
+    } catch (error) {
+        orders = [];
+    }
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     

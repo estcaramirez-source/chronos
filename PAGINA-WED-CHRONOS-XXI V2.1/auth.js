@@ -2,8 +2,16 @@
 // SISTEMA DE AUTENTICACIÓN - CHRONOS XXI
 // ==========================================
 
-// Inicializar usuarios de prueba si no existen
-if (!localStorage.getItem('users')) {
+function hasValidUsers() {
+    try {
+        return Array.isArray(JSON.parse(localStorage.getItem('users')));
+    } catch (error) {
+        return false;
+    }
+}
+
+// Inicializar usuarios de prueba si no existen o si la lista guardada está corrupta
+if (!hasValidUsers()) {
     const defaultUsers = [
         {
             id: '1',
@@ -231,7 +239,11 @@ function checkSession() {
     const currentUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
     
     if (currentUser) {
-        return JSON.parse(currentUser);
+        try {
+            return JSON.parse(currentUser);
+        } catch (error) {
+            return null;
+        }
     }
     return null;
 }
