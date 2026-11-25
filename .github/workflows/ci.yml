@@ -4,7 +4,8 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    # feature/** incluido para dejar evidencia de cada paso TDD (rojo → verde → refactor)
+    branches: [main, develop, 'feature/**']
   pull_request:
     branches: [main, develop]
   workflow_dispatch:
