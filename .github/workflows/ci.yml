@@ -31,8 +31,19 @@ jobs:
       contents: read
       pull-requests: write   # solo para comentar el reporte en el PR
     steps:
-      - name: Checkout del código
+      - name: Checkout del código (historial completo para el escaneo de secretos)
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Escaneo de secretos en todo el historial (gitleaks)
+        env:
+          GITLEAKS_VERSION: 8.21.2
+        run: |
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz gitleaks
+          mkdir -p reports
+          ./gitleaks detect --source . --redact --verbose --report-format json --report-path reports/gitleaks.json
+          echo "::notice title=Secretos::gitleaks revisó $(git rev-list --count HEAD) commits; hallazgos: $(grep -c '"RuleID"' reports/gitleaks.json || true)"
 
       - name: Configurar Node.js con caché de dependencias
         uses: actions/setup-node@v5
@@ -44,8 +55,11 @@ jobs:
       - name: Instalación de dependencias
         run: npm install --no-audit --no-fund
 
-      - name: Análisis estático (ESLint, 0 errores y 0 advertencias)
+      - name: Análisis estático (ESLint, 0 errores y 0 advertencias, complejidad ≤ 10)
         run: npm run lint
+
+      - name: Reporte de complejidad ciclomática
+        run: npm run complexity
 
       - name: Auditoría de dependencias (sin vulnerabilidades críticas)
         run: npm audit --audit-level=critical
