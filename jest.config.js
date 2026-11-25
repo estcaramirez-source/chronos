@@ -10,7 +10,7 @@ module.exports = {
         'PAGINA-WED-CHRONOS-XXI V2.1/{auth,cart,products,scripts}.js'
     ],
     coverageDirectory: 'coverage',
-    coverageReporters: ['text', 'text-summary', 'lcov', 'json-summary', 'cobertura'],
+    coverageReporters: ['text', 'text-summary', 'lcov', 'json', 'json-summary', 'cobertura'],
     coverageThreshold: {
         global: {
             lines: 80,
