@@ -6,7 +6,7 @@ beforeEach(() => {
     jest.useFakeTimers();
     resetEnvironment();
     window.confirm = jest.fn(() => false);
-    window.cartSystem = { addToCart: jest.fn() };
+    window.cartSystem = { addToCart: jest.fn(() => true) };
     window.authSystem = { isLoggedIn: jest.fn(() => true) };
     products = loadScript('products.js');
 });
