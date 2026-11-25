@@ -23,6 +23,8 @@ module.exports = [
             // por eso solo se revisan variables locales sin uso.
             'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
             eqeqeq: ['error', 'always'],
+            // B2: complejidad ciclomática máxima por función
+            complexity: ['error', 10],
             'no-var': 'error'
         }
     },
