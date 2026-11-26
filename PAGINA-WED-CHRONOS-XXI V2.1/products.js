@@ -189,23 +189,33 @@ function handleAddToCart(productId) {
     const product = productsDatabase[productId];
     
     if (product) {
-        window.cartSystem.addToCart(product);
-        
-        // Mostrar notificación de éxito
-        showAddToCartNotification(product.name);
+        // addToCart devuelve false si ya hay 10 unidades (RF06): no se debe decir "agregado" (DEF-07)
+        if (window.cartSystem.addToCart(product)) {
+            showAddToCartNotification(product.name);
+        } else {
+            showCartLimitNotification(product.name);
+        }
     }
 }
 
 // Mostrar notificación cuando se agrega un producto
 function showAddToCartNotification(productName) {
-    // Crear notificación
+    showNotification('fa-check-circle', `<strong>${productName}</strong> agregado al carrito`);
+}
+
+// Avisar que se alcanzó el máximo de unidades de una referencia
+function showCartLimitNotification(productName) {
+    showNotification('fa-exclamation-triangle', `<strong>${productName}</strong>: máximo 10 unidades por producto`, 'warning');
+}
+
+function showNotification(icon, message, variant = '') {
     const notification = document.createElement('div');
-    notification.className = 'cart-notification';
+    notification.className = `cart-notification ${variant}`.trim();
     notification.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <span><strong>${productName}</strong> agregado al carrito</span>
+        <i class="fas ${icon}"></i>
+        <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
     
     // Animar entrada
@@ -242,6 +252,10 @@ notificationStyles.textContent = `
         max-width: 350px;
     }
     
+    .cart-notification.warning {
+        background: linear-gradient(135deg, rgba(204, 136, 0, 0.95), rgba(153, 102, 0, 0.95));
+    }
+
     .cart-notification.show {
         right: 0;
     }
@@ -265,6 +279,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         productsDatabase,
         handleAddToCart,
-        showAddToCartNotification
+        showAddToCartNotification,
+        showCartLimitNotification
     };
 }

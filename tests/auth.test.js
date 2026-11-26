@@ -236,13 +236,13 @@ describe('página de login', () => {
     test('recuperar contraseña: correo registrado', () => {
         window.prompt.mockReturnValue('DEMO@chronosxxi.com');
         $('.forgot-password').click();
-        expect(window.alert).toHaveBeenCalledWith(expect.stringContaining('Se ha enviado un correo de recuperación'));
+        expect(window.alert).toHaveBeenCalledWith(expect.stringContaining('recibirás un enlace para restablecer tu contraseña'));
     });
 
-    test('recuperar contraseña: correo no registrado', () => {
+    test('recuperar contraseña: correo no registrado recibe el mismo mensaje neutro', () => {
         window.prompt.mockReturnValue('nadie@x.com');
         $('.forgot-password').click();
-        expect(window.alert).toHaveBeenCalledWith('No se encontró ninguna cuenta con ese correo electrónico.');
+        expect(window.alert).toHaveBeenCalledWith(expect.stringContaining('Si el correo está registrado'));
     });
 
     test('recuperar contraseña: el usuario cancela', () => {

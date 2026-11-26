@@ -15,8 +15,19 @@ initCart();
 // FUNCIONES DEL CARRITO
 // ==========================================
 
+// Lee una lista JSON de localStorage. Si la clave no existe, está corrupta o no
+// contiene una lista, devuelve [] para que la tienda siga funcionando.
+function readStoredList(key) {
+    try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(value) ? value : [];
+    } catch {
+        return [];
+    }
+}
+
 function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+    return readStoredList('cart');
 }
 
 function saveCart(cart) {
@@ -24,13 +35,24 @@ function saveCart(cart) {
     updateCartBadge();
 }
 
+// Regla de negocio RF06: máximo de unidades de una misma referencia por orden.
+const MAX_UNITS_PER_PRODUCT = 10;
+
+// Cantidad permitida: número entero y no mayor al máximo (0 o menos significa eliminar).
+function isAllowedQuantity(quantity) {
+    return Number.isInteger(quantity) && quantity <= MAX_UNITS_PER_PRODUCT;
+}
+
 function addToCart(product) {
     const cart = getCart();
-    
+
     // Verificar si el producto ya existe
     const existingProduct = cart.find(item => item.id === product.id);
-    
+
     if (existingProduct) {
+        if (!isAllowedQuantity(existingProduct.quantity + 1)) {
+            return false;
+        }
         existingProduct.quantity += 1;
     } else {
         cart.push({
@@ -54,14 +76,16 @@ function updateQuantity(productId, quantity) {
     const cart = getCart();
     const product = cart.find(item => item.id === productId);
     
-    if (product) {
-        if (quantity <= 0) {
-            removeFromCart(productId);
-        } else {
-            product.quantity = quantity;
-            saveCart(cart);
-        }
+    if (!product || !isAllowedQuantity(quantity)) {
+        return false;
     }
+    if (quantity <= 0) {
+        removeFromCart(productId);
+        return true;
+    }
+    product.quantity = quantity;
+    saveCart(cart);
+    return true;
 }
 
 function clearCart() {
@@ -69,12 +93,25 @@ function clearCart() {
     updateCartBadge();
 }
 
+// Los precios del catálogo vienen en formato COP ("$23.999.000"): el punto es separador
+// de miles y no hay decimales, así que se conservan solo los dígitos.
+function parsePrice(price) {
+    return Number(String(price).replace(/\D/g, '')) || 0;
+}
+
+const IVA_RATE = 0.19;
+const FREE_SHIPPING_THRESHOLD = 200000;
+const SHIPPING_COST = 15000;
+
+function calculateSummary(subtotal) {
+    const tax = Math.round(subtotal * IVA_RATE);
+    const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+    return { subtotal, tax, shipping, total: subtotal + tax + shipping };
+}
+
 function getCartTotal() {
     const cart = getCart();
-    return cart.reduce((total, item) => {
-        const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-        return total + (price * item.quantity);
-    }, 0);
+    return cart.reduce((total, item) => total + (parsePrice(item.price) * item.quantity), 0);
 }
 
 function getCartCount() {
@@ -136,13 +173,13 @@ function renderCart() {
                     <i class="fas fa-minus"></i>
                 </button>
                 <input type="number" value="${item.quantity}" min="1" readonly>
-                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)">
+                <button class="qty-btn plus" onclick="changeQuantity('${item.id}', 1)" ${item.quantity >= MAX_UNITS_PER_PRODUCT ? 'disabled' : ''}>
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
             <div class="cart-item-price">
                 <p class="price">${item.price}</p>
-                <p class="subtotal">Subtotal: ${formatPrice(parseFloat(item.price.replace(/[^0-9.-]+/g, '')) * item.quantity)}</p>
+                <p class="subtotal">Subtotal: ${formatPrice(parsePrice(item.price) * item.quantity)}</p>
             </div>
             <button class="cart-item-remove" onclick="removeItem('${item.id}')">
                 <i class="fas fa-trash-alt"></i>
@@ -158,11 +195,8 @@ function renderCart() {
 // ==========================================
 
 function updateCartSummary() {
-    const subtotal = getCartTotal();
-    const tax = subtotal * 0.19; // IVA 19%
-    const shipping = subtotal >= 200000 ? 0 : 15000;
-    const total = subtotal + tax + shipping;
-    
+    const { subtotal, tax, shipping, total } = calculateSummary(getCartTotal());
+
     const subtotalEl = document.getElementById('subtotal');
     const taxEl = document.getElementById('tax');
     const shippingEl = document.getElementById('shipping');
@@ -254,8 +288,9 @@ function redirectToLogin() {
 function processPurchase() {
     const user = window.authSystem.getCurrentUser();
     const cart = getCart();
-    const total = getCartTotal() * 1.19; // Incluir IVA
-    
+    // Mismo cálculo que el resumen del carrito: subtotal + IVA + envío
+    const summary = calculateSummary(getCartTotal());
+
     // Generar número de orden
     const orderNumber = 'CHR-' + Date.now().toString(36).toUpperCase();
     
@@ -268,15 +303,16 @@ function processPurchase() {
             email: user.email
         },
         items: cart,
-        subtotal: getCartTotal(),
-        tax: getCartTotal() * 0.19,
-        total: total,
+        subtotal: summary.subtotal,
+        tax: summary.tax,
+        shipping: summary.shipping,
+        total: summary.total,
         date: new Date().toISOString(),
         status: 'confirmed'
     };
     
     // Guardar orden en historial
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const orders = readStoredList('orders');
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
     
@@ -340,6 +376,11 @@ window.cartSystem = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initCart,
+        readStoredList,
+        MAX_UNITS_PER_PRODUCT,
+        isAllowedQuantity,
+        parsePrice,
+        calculateSummary,
         getCart,
         saveCart,
         addToCart,

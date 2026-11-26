@@ -4,7 +4,7 @@ const globals = require('globals');
 
 module.exports = [
     {
-        ignores: ['node_modules/**', 'coverage/**', 'reports/**']
+        ignores: ['node_modules/**', 'coverage/**', 'reports/**', 'test-results/**', 'playwright-report/**']
     },
     js.configs.recommended,
     {
@@ -23,12 +23,14 @@ module.exports = [
             // por eso solo se revisan variables locales sin uso.
             'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
             eqeqeq: ['error', 'always'],
+            // B2: complejidad ciclomática máxima por función
+            complexity: ['error', 10],
             'no-var': 'error'
         }
     },
     {
         // Pruebas, configuración y scripts de CI (Node.js / CommonJS).
-        files: ['tests/**/*.js', 'scripts/**/*.js', '*.config.js'],
+        files: ['tests/**/*.js', 'e2e/**/*.js', 'scripts/**/*.js', '*.config.js'],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: 'commonjs',

@@ -1,0 +1,69 @@
+*   41efb0d merge: feature/documentacion-examen en develop (evidencias del examen)
+|\  
+| * 39f5385 docs: completar ejecuciones #35-#38 y conteos finales en las evidencias
+| * 782c829 docs: plan de pruebas, diseño de casos, registro de defectos, calidad de código, lista de chequeo e informe técnico final
+* |   86dff8c merge: feature/subir-umbral-cobertura en develop (umbral 95 %, D6)
+|\ \  
+| |/  
+|/|   
+| * a6333e1 test: GREEN - cubrir ramas defensivas para cumplir el umbral de 95 % (D6)
+| *   01d7b91 merge: develop en feature/subir-umbral-cobertura
+| |\  
+| |/  
+|/|   
+* |   8547dcb merge: feature/fix-smoke-inestable en develop (DEF-09)
+|\ \  
+| * | 0d98c36 fix(ci): reintentar cualquier error mientras staging arranca (DEF-09, prueba inestable)
+|/ /  
+| * fe34753 ci: RED - subir el umbral de cobertura a 95 % (plan progresivo, sprint 2)
+|/  
+*   dd2ec12 merge: feature/fix-recuperar-contrasena en develop (DEF-08 seguridad)
+|\  
+| * 893f3fe fix(auth): recuperación de contraseña con mensaje neutro (DEF-08)
+| * 4101c45 test: RED - recuperar contraseña no debe revelar la clave ni qué correos existen (DEF-08)
+|/  
+*   0f8916d merge: feature/aceptacion-e2e en develop (C5 aceptación con Playwright)
+|\  
+| * 215d7db test(e2e): aceptación con Playwright contra el contenedor de staging (E2E-01 a E2E-05)
+|/  
+*   9aadfa9 merge: feature/calidad-estatica en develop (B2 complejidad, B4 secretos, C6 no cubierto)
+|\  
+| * 95d2e26 ci: generar coverage-final.json para listar lo no cubierto
+| * de86606 ci: complejidad ciclomática ≤ 10, reporte por función, escaneo de secretos y líneas sin cubrir
+|/  
+*   f7d38ca merge: feature/pruebas-caja-negra-blanca-integracion en develop (C2, C3, C4, DEF-07)
+|\  
+| * 14da306 test: caja blanca - caminos base de updateQuantity (V(G)=4) y handleAddToCart (V(G)=5)
+| * 16d4982 fix(products): avisar el límite de unidades en lugar de 'agregado' (DEF-07)
+| * 43d4537 test: INT-01 debe revisar la última notificación, no la primera
+| * dc9935c test: RED - integración bottom-up auth/cart/products, INT-04 expone DEF-07
+| * 0111fdf test: caja negra - partición de equivalencia y valores límite (CN-01 a CN-31)
+|/  
+*   8105fca merge: feature/fix-scripts-sin-formulario en develop (DEF-03)
+|\  
+| * 6a775c5 fix(scripts): verificar que existan los elementos antes de usarlos (DEF-03)
+| * 34f9a80 test: RED - regresión DEF-03, scripts.js falla en páginas sin formulario de contacto
+|/  
+*   0ed27cd merge: feature/tdd-limite-unidades en develop (TDD #2, cambio evolutivo RF06)
+|\  
+| * dbf32f0 refactor(tdd): REFACTOR - constante MAX_UNITS_PER_PRODUCT e isAllowedQuantity
+| * f0e7d77 feat(tdd): GREEN - limitar a 10 unidades enteras por producto
+| * 0e402e8 test(tdd): RED - máximo 10 unidades por producto y cantidades enteras
+|/  
+*   2742f9e merge: feature/tdd-almacenamiento-seguro en develop (TDD #1)
+|\  
+| * 154e166 refactor(tdd): REFACTOR - centralizar la lectura segura del almacenamiento
+| * f33bad6 style(tdd): GREEN - usar catch sin variable para cumplir no-unused-vars
+| * 1559f1d feat(tdd): GREEN - capturar JSON inválido en carrito, órdenes, usuarios y sesión
+| * dc839ee test(tdd): RED - el carrito y la sesión deben tolerar JSON corrupto en localStorage
+|/  
+* f66d0a3 ci: ejecutar el pipeline también en ramas feature/*
+* ff071a5 docs: solución del Taller U3 e Informe de CI v1.0
+* 7e76e12 fix(cart): interpretar precios COP con separador de miles e incluir envío en la orden
+* a07ee46 test: pruebas de regresión para precios COP con separador de miles (build rojo esperado)
+* 2083dfc test: definir authSystem al recargar cart.js en la prueba del modal
+* 70b987b fix(ci): evitar regex con carácter de control (no-control-regex) y usar upload-artifact v6
+* 52db852 ci: reportar pruebas fallidas como anotaciones y actualizar a Node 22 / acciones v5
+* 141ff11 docs: insignia de CI apuntando al repositorio
+* b914de5 ci: pipeline de integración continua con GitHub Actions
+* 5e6edd0 chore: importar CHRONOS XXI v2.1 como base del repositorio

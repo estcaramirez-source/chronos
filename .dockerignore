@@ -5,3 +5,5 @@ reports
 tests
 scripts
 .github
+e2e
+playwright.config.js

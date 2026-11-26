@@ -62,6 +62,36 @@ if (coverage) {
     console.log(`::notice title=Cobertura::${resumen.join(' | ')}`);
 }
 
+// C6: detalle de lo que NO está cubierto (sentencias y ramas con 0 ejecuciones).
+const detalle = readJson('coverage/coverage-final.json');
+if (detalle) {
+    const pendientes = [];
+    for (const [archivo, data] of Object.entries(detalle)) {
+        const nombre = path.basename(archivo);
+        for (const [id, veces] of Object.entries(data.s)) {
+            if (veces === 0) pendientes.push({ nombre, linea: data.statementMap[id].start.line, tipo: 'sentencia' });
+        }
+        for (const [id, conteos] of Object.entries(data.b)) {
+            const rama = data.branchMap[id];
+            conteos.forEach((veces, i) => {
+                if (veces === 0) {
+                    const loc = (rama.locations[i] && rama.locations[i].start.line) ? rama.locations[i] : rama.loc;
+                    pendientes.push({ nombre, linea: loc.start.line, tipo: `rama ${rama.type} #${i + 1}` });
+                }
+            });
+        }
+    }
+    pendientes.sort((a, b) => a.nombre.localeCompare(b.nombre) || a.linea - b.linea);
+    lines.push('', `**Elementos sin cubrir (${pendientes.length}):**`, '');
+    if (pendientes.length) {
+        lines.push('| Archivo | Línea | Tipo |', '|---|---|---|', ...pendientes.map(p => `| ${p.nombre} | ${p.linea} | ${p.tipo} |`));
+    } else {
+        lines.push('Ninguno.');
+    }
+    const texto = pendientes.map(p => `${p.nombre}:${p.linea} (${p.tipo})`).join(', ') || 'ninguno';
+    console.log(`::notice title=Sin cubrir::${texto}`);
+}
+
 lines.push('', `_Commit ${process.env.GITHUB_SHA || 'local'} · ejecución #${process.env.GITHUB_RUN_NUMBER || '-'}_`, '');
 const markdown = lines.join('\n');
 
