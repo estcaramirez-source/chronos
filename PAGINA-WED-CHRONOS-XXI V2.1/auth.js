@@ -286,21 +286,17 @@ socialButtons.forEach(button => {
 // ==========================================
 
 const forgotPasswordLink = document.querySelector('.forgot-password');
+const RECOVERY_MESSAGE = 'Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.\n\n(Simulación: la tienda aún no envía correos.)';
 
 if (forgotPasswordLink) {
     forgotPasswordLink.addEventListener('click', function(e) {
         e.preventDefault();
         const email = prompt('Ingresa tu correo electrónico para recuperar tu contraseña:');
         
+        // Respuesta neutra (DEF-08): nunca se muestra la contraseña y el mensaje es el
+        // mismo exista o no la cuenta, para no revelar qué correos están registrados.
         if (email) {
-            const users = getUsers();
-            const user = users.find(u => u.email === email.toLowerCase());
-            
-            if (user) {
-                alert(`Se ha enviado un correo de recuperación a ${email}\n\n(Esta es una simulación. Tu contraseña es: ${user.password})`);
-            } else {
-                alert('No se encontró ninguna cuenta con ese correo electrónico.');
-            }
+            alert(RECOVERY_MESSAGE);
         }
     });
 }
