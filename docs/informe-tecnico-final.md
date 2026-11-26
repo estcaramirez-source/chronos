@@ -98,7 +98,7 @@ La evidencia detallada de cada ítem, con rutas y enlaces, está en la [lista de
 - **SOLID:** responsabilidad única en los cálculos, inversión de dependencias en `products.js` (permite inyectar dobles) y abierto/cerrado en catálogo y notificaciones.
 - **Defensiva:** 12 entradas validadas; excepciones de almacenamiento encapsuladas; 0 secretos en el historial; riesgo residual de credenciales en el cliente.
 - **TDD:** 2 ciclos completos con un commit y una ejecución por fase. → [registro-defectos.md](registro-defectos.md)
-- **Control de versiones:** Conventional Commits, `main`/`develop` y 9 ramas `feature/*`. → [`docs/evidencias/`](evidencias/)
+- **Control de versiones:** Conventional Commits, `main`/`develop` y 10 ramas `feature/*`. → [`docs/evidencias/`](evidencias/)
 - **Mantenimiento:** 9 defectos clasificados (5 correctivos, 2 preventivos, 1 adaptativo, 1 perfectivo) y el cambio evolutivo EV-01.
 
 ### Pruebas con xUnit (C1–C7)
@@ -136,7 +136,7 @@ Las cuatro métricas (líneas, sentencias, funciones y ramas) superan el **95 %*
 | Ejecución exitosa | [#30](https://github.com/estcaramirez-source/chronos/actions/runs/45725277828) | Lint, complejidad, secretos, 160 pruebas, cobertura, staging, humo y 5 E2E en verde |
 | Fallida provocada → corregida (defecto) | [#6](https://github.com/estcaramirez-source/chronos/actions/runs/44430954143) → [#7](https://github.com/estcaramirez-source/chronos/actions/runs/44431413545) | Regresión de precios COP; corrección en [7e76e12](https://github.com/estcaramirez-source/chronos/commit/7e76e12) |
 | Fallidas TDD (rojo intencional) | [#10](https://github.com/estcaramirez-source/chronos/actions/runs/45722136400), [#15](https://github.com/estcaramirez-source/chronos/actions/runs/45722794128), [#19](https://github.com/estcaramirez-source/chronos/actions/runs/45723418409), [#22](https://github.com/estcaramirez-source/chronos/actions/runs/45723911353), [#31](https://github.com/estcaramirez-source/chronos/actions/runs/45725622702) | Cada una seguida de su verde |
-| **El build falla si la cobertura baja del umbral** | [#34](https://github.com/estcaramirez-source/chronos/actions/runs/45726106516) | Se subió el umbral a 95 % (commit [fe34753](https://github.com/estcaramirez-source/chronos/commit/fe34753)). Resultado: **162/162 pruebas aprobadas, pero ramas 94,67 % < 95 % → exit code 1**. Se recuperó agregando pruebas en [a6333e1](https://github.com/estcaramirez-source/chronos/commit/a6333e1). |
+| **El build falla si la cobertura baja del umbral** | [#34](https://github.com/estcaramirez-source/chronos/actions/runs/45726106516) | Se subió el umbral a 95 % (commit [fe34753](https://github.com/estcaramirez-source/chronos/commit/fe34753)). Resultado: **162/162 pruebas aprobadas, pero ramas 94,67 % < 95 % → exit code 1**. Se recuperó agregando pruebas en [a6333e1](https://github.com/estcaramirez-source/chronos/commit/a6333e1): ejecución #37 en verde con las cuatro métricas ≥ 95 %. |
 
 #### D7. Informe de CI: arquitectura, herramientas y reflexión crítica
 
