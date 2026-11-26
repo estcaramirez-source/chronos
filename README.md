@@ -417,25 +417,41 @@ const SHIPPING_COST = 15000;              // $15K
 
 ## 🔁 Integración Continua
 
-El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (GitHub Actions, `ubuntu-latest`, Node.js 22 LTS) y se ejecuta en cada *push* a `main` / `develop` y en cada *pull request*.
+El pipeline está en [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (GitHub Actions, `ubuntu-latest`, Node.js 22 LTS) y se ejecuta en cada *push* a `main`, `develop` y `feature/**`, y en cada *pull request*.
 
 | Etapa | Comando | Falla si… |
 |---|---|---|
+| Secretos | `gitleaks detect` (todo el historial) | hay un secreto en algún commit |
 | Instalación (con caché npm) | `npm install` | no se pueden resolver dependencias |
-| Análisis estático | `npm run lint` | hay 1 error o advertencia de ESLint |
+| Análisis estático | `npm run lint` | hay 1 error o advertencia de ESLint, o una función con complejidad > 10 |
+| Complejidad | `npm run complexity` | (reporte por función en `reports/complexity.md`) |
 | Auditoría | `npm audit --audit-level=critical` | hay una vulnerabilidad crítica |
-| Pruebas + cobertura | `npm run test:ci` | falla una prueba o la cobertura baja del umbral (`jest.config.js`) |
-| Reporte | artefacto `reportes-ci-N` (coverage + JUnit) | — |
-| Staging | `docker build` + `scripts/smoke-test.sh` | una página no responde 200 |
+| Pruebas + cobertura | `npm run test:ci` | falla una prueba o la cobertura baja de 95 % (`jest.config.js`) |
+| Reporte | artefacto `reportes-ci-N` (coverage, JUnit, complejidad, gitleaks) | — |
+| Staging | `docker build` + `scripts/smoke-test.sh` | un recurso no responde 200 |
+| Aceptación E2E | `npm run test:e2e` (Playwright contra staging) | falla un escenario |
 
 Ejecutar lo mismo en local (requiere Node.js ≥ 22):
 
 ```bash
 npm install
-npm run ci          # lint + pruebas + cobertura
+npm run ci          # lint + complejidad + pruebas + cobertura
+npx playwright install chromium && npm run test:e2e   # con el sitio servido en http://localhost:8080
 ```
 
-Documentación del taller: [`docs/taller-u3-ci.md`](docs/taller-u3-ci.md) · [`docs/informe-ci-v1.0.md`](docs/informe-ci-v1.0.md)
+Documentación del taller U3: [`docs/taller-u3-ci.md`](docs/taller-u3-ci.md) · [`docs/informe-ci-v1.0.md`](docs/informe-ci-v1.0.md)
+
+### 📋 Examen final – evidencias
+
+| Documento | Ítems |
+|---|---|
+| [Informe técnico final](docs/informe-tecnico-final.md) | Portada, resumen ejecutivo, componentes, C6, D6, D7 |
+| [Lista de chequeo diligenciada](docs/lista-chequeo-examen.md) | B1–D7 con estado C/P/N y comentarios |
+| [Calidad de código](docs/calidad-codigo.md) | B1–B4 |
+| [Diseño de casos de prueba](docs/diseno-casos-de-prueba.md) | C1–C5 |
+| [Registro de defectos y trazabilidad](docs/registro-defectos.md) | B7, C7 |
+| [Plan de pruebas](docs/plan-de-pruebas.md) | D1–D4 |
+| [Evidencias de Git](docs/evidencias/) | B6 |
 
 ---
 
