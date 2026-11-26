@@ -7,7 +7,8 @@ BASE_URL="${1:-http://localhost:8080}"
 FAILED=0
 
 echo "Esperando a que staging responda en ${BASE_URL} ..."
-curl --silent --fail --retry 15 --retry-connrefused --retry-delay 1 -o /dev/null "${BASE_URL}/"
+# --retry-all-errors: nginx puede reiniciar la conexión mientras arranca (curl exit 56, DEF-09)
+curl --silent --fail --retry 20 --retry-all-errors --retry-delay 1 -o /dev/null "${BASE_URL}/"
 
 check_status() {
     local path="$1"
